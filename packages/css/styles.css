@@ -1392,7 +1392,6 @@ img {
     font-size: 13px;
   }
 }
-
 /* Contact Section */
 .contact.section {
   text-align: center;
@@ -1400,21 +1399,37 @@ img {
 }
 
 .contact__container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
   gap: 2rem;
   margin-top: 2rem;
-  justify-items: center;
+  flex-wrap: wrap; /* Allow wrap on smaller screens */
 }
 
 .contact__card {
+  flex: 1 1 220px;
   background: #ffffff;
   padding: 2rem 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  min-width: 220px;
+  max-width: 300px; /* Optional: limit max width */
+  text-align: center;
+  word-wrap: break-word;   /* Ensure long words break */
+  overflow-wrap: break-word;
 }
+
+.contact__detail {
+  font-size: 0.95rem;
+  color: #555;
+  word-break: break-word;  /* Ensure long email wraps */
+  max-width: 100%;
+  white-space: normal;     /* Prevents no-wrap */
+}
+
 
 .contact__card:hover {
   transform: translateY(-8px) scale(1.03);
@@ -1434,28 +1449,17 @@ img {
   margin-bottom: 0.5rem;
 }
 
-.contact__detail {
-  font-size: 0.95rem;
-  color: #555;
-}
-
 /* Bouncy icon animation */
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments: Stack vertically on small screens */
 @media (max-width: 768px) {
   .contact__container {
-    gap: 1.5rem;
-  }
-
-  .contact__card {
-    padding: 1.5rem 1rem;
-  }
-
-  .contact__icon {
-    font-size: 2rem;
+    flex-direction: column;
+    align-items: center;
   }
 }
+
